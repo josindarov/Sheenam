@@ -1,9 +1,10 @@
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
+using Sheenam.Api.Brokers.Foundation.Guests;
 
 namespace Sheenam.Api.Brokers.StorageBroker;
 
-public partial class StorageBroker : EFxceptionsContext
+public partial class StorageBroker : EFxceptionsContext, IStorageBroker
 {
     private readonly IConfiguration configuration;
 
@@ -22,4 +23,5 @@ public partial class StorageBroker : EFxceptionsContext
     }
 
     public override void Dispose() { }
+    
 }
