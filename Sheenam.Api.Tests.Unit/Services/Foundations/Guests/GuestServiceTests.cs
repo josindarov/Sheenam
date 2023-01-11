@@ -22,12 +22,14 @@ public partial class GuestServiceTests
     
     private static Guest CreateRandomGuest()
     {
-        return CreateGuestFiller(date: GetRandomDateTimeOffSet()).Create();
+        return CreateGuestFiller(date:
+            GetRandomDateTimeOffSet()).Create();
     }
 
     private static DateTimeOffset GetRandomDateTimeOffSet()
     {
-        return new DateTimeRange(earliestDate: new DateTime()).GetValue();
+        return new DateTimeRange(earliestDate: 
+            new DateTime()).GetValue();
     }
     
     private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)

@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using FluentAssertions;
+using Force.DeepCloner;
 using Moq;
 using Sheenam.Api.Brokers.Foundation.Guests;
 using Xunit;
@@ -15,7 +16,7 @@ public partial class GuestServiceTests
         Guest randomGuest = CreateRandomGuest();
         Guest inputGuest = randomGuest;
         Guest returningGuest = inputGuest;
-        Guest expectationGuest = returningGuest;
+        Guest expectationGuest = returningGuest.DeepClone();
 
         this.storageBrokerMock.Setup(broker =>
             broker.InsertGuestAsync(inputGuest))
