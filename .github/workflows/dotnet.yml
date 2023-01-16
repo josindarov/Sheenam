@@ -1,25 +1,28 @@
-name: Sheenam Build Pipeline
+name: build on pull request and branch
+
 on:
   push:
-    branches:
-    - master
+    branches: [ main ]
   pull_request:
-    branches:
-    - master
+    branches: [ main ]
+
 jobs:
   build:
-    runs-on: windows-2022
+
+    runs-on: windows-latest
+
     steps:
-    - name: Checking out code
-      uses: actions/checkout@v2
-    - name: Setting Up .NET
+    - uses: actions/checkout@v2
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.300
-        include-prerelease: false
-    - name: Restoring Nuget Packages
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      working-directory: ./.
       run: dotnet restore
-    - name: Building Project
+    - name: Build
+      working-directory: ./.
       run: dotnet build --no-restore
-    - name: Running Tests
+    - name: Test
+      working-directory: ./.
       run: dotnet test --no-build --verbosity normal
